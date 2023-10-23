@@ -1,7 +1,16 @@
-export default function Home() {
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Hero from './pages/home';
+
+
+function Home() {
   return (
-    <h1 className="text-3xl font-normal underline">
-      Hello world!
-    </h1>
-  )
+    <div>
+      <Navbar/>
+      <Hero/>
+      <Footer/>
+    </div>
+  );
 }
+
+export default Home;
