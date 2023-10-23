@@ -1,10 +1,7 @@
-
 export default function Home() {
   return (
-    <div>
-      <div>
-        <h1>Enter Your Name</h1>
-      </div>
-    </div>
+    <h1 className="text-3xl font-normal underline">
+      Hello world!
+    </h1>
   )
 }
