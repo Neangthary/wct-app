@@ -1,16 +1,13 @@
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Hero from './pages/home';
+import React from 'react';
+import RootLayout from './layout';
 
-
-function Home() {
+const Home = () => {
   return (
-    <div>
-      <Navbar/>
-      <Hero/>
-      <Footer/>
-    </div>
+    <RootLayout>
+      {/* <h1>Home Page</h1> */}
+      {/* Other page content */}
+    </RootLayout>
   );
-}
+};
 
 export default Home;
