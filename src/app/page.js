@@ -1,16 +1,19 @@
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Hero from './pages/home';
+import Home from "./home/page";
+import About from "./about/page";
+import { Inter } from "next/font/google";
+import "./globals.css";
+const inter = Inter({ subsets: ["latin"] });
 
+export const metadata = {
+  title: "Event Navigator",
+  description: "Event Navigator",
+};
 
-function Home() {
+export default function Page() {
   return (
-    <div>
-      <Navbar/>
-      <Hero/>
-      <Footer/>
-    </div>
+    <main>
+      <Home />
+      <About />
+    </main>
   );
 }
-
-export default Home;
