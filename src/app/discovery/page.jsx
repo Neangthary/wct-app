@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function discovery() {
   return (
-    <div>discovery</div>
+    <div><h1>discovery</h1></div>
+    
   )
 }

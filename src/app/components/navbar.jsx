@@ -1,30 +1,32 @@
-// components/Navbar.jsx
+"use client"
 import React from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+  const router = useRouter();
+
+  const onClickPage = (pathname) => {
+    router.push(pathname);
+  };
+  
+
   return (
     <nav className="bg-blue-500 p-4">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-          <Link href="/">
-            <a className="text-white font-bold text-2xl">Event Navigator</a>
-          </Link>
+          <div className="text-white font-bold text-2xl">Event Navigator</div>
           <ul className="flex space-x-4">
             <li>
-              <Link href="/">
-                <a className="text-white">Home</a>
-              </Link>
+              <button className="font-bold text-white hover:text-cyan-950" onClick={() => onClickPage('/')}>Home</button>
             </li>
             <li>
-              <Link href="/about">
-                <a className="text-white">About</a>
-              </Link>
+              <button className="font-bold text-white hover:text-cyan-950" onClick={() => onClickPage('/about')}>About</button>
             </li>
             <li>
-              <Link href="/contact">
-                <a className="text-white">Contact</a>
-              </Link>
+              <button className="font-bold text-white hover:text-cyan-950" onClick={() => onClickPage('/discovery')}>Discovery</button>
+            </li>
+            <li>
+              <button className="font-bold text-white hover:text-cyan-950" onClick={() => onClickPage('/contact')}>Contact</button>
             </li>
           </ul>
         </div>

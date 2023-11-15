@@ -1,13 +1,19 @@
-import React from 'react';
-import RootLayout from './layout';
+import Home from "./home/page";
+import About from "./about/page";
+import { Inter } from "next/font/google";
+import "./globals.css";
+const inter = Inter({ subsets: ["latin"] });
 
-const Home = () => {
-  return (
-    <RootLayout>
-      {/* <h1>Home Page</h1> */}
-      {/* Other page content */}
-    </RootLayout>
-  );
+export const metadata = {
+  title: "Event Navigator",
+  description: "Event Navigator",
 };
 
-export default Home;
+export default function Page() {
+  return (
+    <main>
+      <Home />
+      <About />
+    </main>
+  );
+}
