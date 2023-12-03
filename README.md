@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
-
+Clone from branch name "develop"
 First, run the development server:
 
 ```bash
@@ -13,7 +13,7 @@ pnpm dev
 # or
 bun dev
 ```
-![Screenshot (50)](https://github.com/WanDare/wct-app/assets/128677061/d3cfd63a-2091-4181-9ab1-fba6db414722)
+![Screenshot (51)](https://github.com/WanDare/wct-app/assets/128677061/749562bf-7b1e-4f25-974f-44041a36fe9f)
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
