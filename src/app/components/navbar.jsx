@@ -37,10 +37,13 @@ const Navbar = () => {
           </button>
 
           {/* Navigation Links - Hidden on mobile, visible on larger screens */}
-          <ul className="hidden lg:flex space-x-10">
+          <ul
+            className="hidden lg:flex space-x-10 font-bold"
+            style={{ color: "#4F4F4F" }}
+          >
             <li>
               <button
-                className="font-bold text-gray-700 hover:text-black"
+                className="hover:text-black"
                 onClick={() => onClickPage("/")}
               >
                 Home
@@ -48,7 +51,7 @@ const Navbar = () => {
             </li>
             <li>
               <button
-                className="font-bold text-gray-700 hover:text-black"
+                className="hover:text-black"
                 onClick={() => onClickPage("/discovery")}
               >
                 Discovery
@@ -56,7 +59,7 @@ const Navbar = () => {
             </li>
             <li>
               <button
-                className="font-bold text-gray-700 hover:text-black"
+                className="hover:text-black"
                 onClick={() => onClickPage("/about")}
               >
                 About
@@ -64,7 +67,7 @@ const Navbar = () => {
             </li>
             <li>
               <button
-                className="font-bold text-gray-700 hover:text-black"
+                className="hover:text-black"
                 onClick={() => onClickPage("/contact")}
               >
                 Contact
@@ -75,10 +78,10 @@ const Navbar = () => {
           {/* Responsive Menu */}
           {menuOpen && (
             <div className="lg:hidden absolute top-16 left-0 w-full max-h-screen overflow-y-auto bg-white z-10 transition-opacity duration-300 opacity-100">
-              <ul className="flex flex-col space-y-4 p-4">
+              <ul className="flex flex-col space-y-4 p-4 font-bold" style={{ color: "#4F4F4F" }}>
                 <li>
                   <button
-                    className="font-bold text-gray-700 hover:text-black"
+                    className="hover:text-black"
                     onClick={() => onClickPage("/")}
                   >
                     Home
@@ -86,7 +89,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <button
-                    className="font-bold text-gray-700 hover:text-black"
+                    className="hover:text-black"
                     onClick={() => onClickPage("/discovery")}
                   >
                     Discovery
@@ -94,7 +97,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <button
-                    className="font-bold text-gray-700 hover:text-black"
+                    className="hover:text-black"
                     onClick={() => onClickPage("/about")}
                   >
                     About
@@ -102,7 +105,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <button
-                    className="font-bold text-gray-700 hover:text-black"
+                    className="hover:text-black"
                     onClick={() => onClickPage("/contact")}
                   >
                     Contact
