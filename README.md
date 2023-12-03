@@ -5,6 +5,11 @@ Clone from branch name "develop"
 First, run the development server:
 
 ```bash
+# install this two line packages for the project
+npm install -g next
+npm install tailwindcss
+
+# For running a website server
 npm run dev
 # or
 yarn dev
