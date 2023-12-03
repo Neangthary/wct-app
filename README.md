@@ -13,6 +13,7 @@ pnpm dev
 # or
 bun dev
 ```
+![Screenshot (50)](https://github.com/WanDare/wct-app/assets/128677061/d3cfd63a-2091-4181-9ab1-fba6db414722)
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
