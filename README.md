@@ -1,12 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project tailwind css with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
-
-Note: Please clone from the branch name develop !
-
+Clone from branch name "develop"
 First, run the development server:
 
 ```bash
+# install this two line packages for the project
+npm install -g next
+npm install tailwindcss
+
+# For running a website server
 npm run dev
 # or
 yarn dev
@@ -15,6 +18,7 @@ pnpm dev
 # or
 bun dev
 ```
+![Screenshot (51)](https://github.com/WanDare/wct-app/assets/128677061/749562bf-7b1e-4f25-974f-44041a36fe9f)
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
