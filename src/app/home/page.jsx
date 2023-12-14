@@ -14,33 +14,32 @@ const Home = () => {
       >
         <div className="container mx-auto text-center">
           <img
-            className="h-110 w-110 mx-auto"
+            className="h-100 w-100 mx-auto"
             src={"/images/EventHunt.svg"}
             alt=""
-            style={{ filter: "brightness(100%)" }}
           />
-          <div className="bg-white py-7">
+          <div className="bg-white py-7 border-">
             <ul
-              className="lg:flex flex space-x-10 font-bold"
+              className="lg:flex flex space-x-10 font-bold justify-center"
               style={{ color: "#4F4F4F" }}
             >
               <li>
-                <button className="hover:text-black">Home</button>
+                <button className="hover:text-black">Location</button>
               </li>
               <li>
-                <button className="hover:text-black">Discovery</button>
+                <button className="hover:text-black">Date</button>
               </li>
               <li>
-                <button className="hover:text-black">About</button>
+                <button className="hover:text-black">Type</button>
               </li>
               <li>
-                <button className="hover:text-black">Contact</button>
+                <button className="hover:text-black">Payment</button>
+              </li>
+              <li>
+                <button className="hover:text-black">Search</button>
               </li>
             </ul>
           </div>
-          <button className="bg-white text-blue-500 font-semibold px-6 py-2 mt-8 rounded-full hover:bg-gray-800 hover:text-white">
-            Get Started
-          </button>
         </div>
       </div>
       <Footer />
