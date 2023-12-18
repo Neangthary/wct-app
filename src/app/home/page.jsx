@@ -5,6 +5,8 @@ import Footer from "../components/footer";
 import { useEffect, useState } from "react";
 import Feature from "../components/feature_card";
 import Recentcard from "../components/recent_card";
+import Peoplelove from "../components/people_love";
+import Endfooter from "../components/end_widget";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -53,18 +55,18 @@ const Home = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-6 h-6 mr-2"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
                     />
                   </svg>
@@ -166,14 +168,19 @@ const Home = () => {
         <div className="pt-12 pb-5">
           <h1 className="text-lg font-bold">What’s happening this week</h1>
         </div>
-        <div
-          className={`transition-transform duration-1000 ${
-            isVisible
-              ? "opacity-100 transform translate-y-0"
-              : "opacity-0 transform -translate-y-10"
-          }`}
-        >
-          <Recentcard />
+        <Recentcard />
+        <div className="pt-12 pb-5">
+          <h1 className="text-lg font-bold">What’s people love</h1>
+        </div>
+        <Peoplelove />
+        <div className="pt-12 pb-5">
+          <Endfooter />
+          <div className="text-center pt-10">
+            <h1 className="text-xl p-2">Explore event with Event Finder</h1>
+            <a href="#link" className="text-sm text-blue-500">
+              Discover new places and experiences
+            </a>
+          </div>
         </div>
       </div>
 

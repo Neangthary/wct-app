@@ -25,25 +25,18 @@ const Eventcard = [
   {
     event: "Event 5",
     description: "Short description",
-    imageUrl: "/images/Rectangle4.png",
+    imageUrl: "/images/Rectangle1.png",
   },
 ];
 
 const Feature = () => {
   return (
     <div>
-      <ul
-        role="list"
-        className="flex flex-wrap gap-3 justify-center"
-      >
+      <ul role="list" className="flex flex-wrap gap-3 justify-center">
         {Eventcard.map((Eventcard) => (
           <li key={Eventcard.event}>
             <div className=" items-center gap-x-6">
-              <img
-                className="h-100 w-100"
-                src={Eventcard.imageUrl}
-                alt=""
-              />
+              <img className="h-100 w-100" src={Eventcard.imageUrl} alt="" />
               <div>
                 <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
                   {Eventcard.event}
