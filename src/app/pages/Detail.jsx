@@ -1,6 +1,7 @@
 "use client";
 import { CarRepair, PlaceOutlined, Star, StarHalf, ThumbUpAltOutlined, WifiOutlined } from "@mui/icons-material";
 import { useState, useEffect, useRef } from "react";
+import Register from "../components/Register";
 
 const EventDetail = () => {
     
@@ -10,12 +11,12 @@ const EventDetail = () => {
         <div>
             {/* event name and shorthanded info (rating, location) */}
             <div className="event-shorthanded-info container mx-auto py-8 pl-5 md:pl-0 ">
-                <h1 className=" text-2xl md:text-3xl font-semibold text-gray-800" > { "RUPP's charity Event" } </h1>
+                <h1 className=" text-2xl md:text-3xl font-semibold text-gray-800 mb-4" > { "RUPP's charity Event" } </h1>
                 <div className=" text-sm leading-8 ">
                     <div className="flex">
                         <div className=" text-xl text-yellow-500" ><Star /><Star /><Star /><Star /><StarHalf /> </div> { "4.5 (1200 Reviews)" } 
                     </div>
-                    <p className=" text-gray-900 font-semibold "> <PlaceOutlined className=" text-blue-600" /> { "Royal University of Phnom Penh, Phnom Penh, Cambodia" } </p>
+                    <p className=" text-gray-900 font-semibold "> <PlaceOutlined className=" text-blue-600" /> { "Royal University of Phnom Penh, Phnom Penh, Cambodia." } </p>
                 </div>
             </div>
 
@@ -32,11 +33,15 @@ const EventDetail = () => {
                     </div>
                     <div className="event-shorthanded-detail mt-1 leading-8 shadow rounded-b-lg p-6 bg-white">
                         <div className=" text-base font-semibold">Event details</div>
-                        <div className="text-xs md:text-sm leading-7 md:leading-none">
-                            <p> <WifiOutlined className=" text-xl md:text-2xl text-blue-500" /> { "Free to join" } </p>
-                            <p> <CarRepair className=" text-xl md:text-2xl text-blue-500" /> { "Parking available" } </p>
-                            <p> <ThumbUpAltOutlined  className=" text-xl md:text-2xl text-blue-500"/> { "Top rated in area" } </p>
-                            
+                        <div className=" flex items-end justify-between">
+                            <div className="text-xs md:text-sm leading-7 md:leading-none">
+                                <p> <WifiOutlined className=" text-xl md:text-2xl text-blue-500" /> { "Free to join" } </p>
+                                <p> <CarRepair className=" text-xl md:text-2xl text-blue-500" /> { "Parking available" } </p>
+                                <p> <ThumbUpAltOutlined  className=" text-xl md:text-2xl text-blue-500"/> { "Top rated in area" } </p>
+                            </div>
+                            <div className="">
+                                <Register />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -50,7 +55,9 @@ const EventDetail = () => {
                     loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
+                
             </div>
+            
         </div>
     );
     const [reviewContent, setReviewContent] = useState(
