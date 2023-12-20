@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
@@ -12,9 +12,11 @@ import PaymentIcon from "../../../public/icons/PaymentIcon";
 import TypeIcon from "../../../public/icons/TypeIcon";
 
 const Home = () => {
-
   const renderButton = (icon, text) => (
-    <button className="flex flex-initial w-52 p-5 rounded-lg hover:text-black" style={{ backgroundColor: "#EBEBEB" }}>
+    <button
+      className="flex flex-initial w-52 p-5 rounded-lg hover:text-black"
+      style={{ backgroundColor: "#EBEBEB" }}
+    >
       {icon}
       {text}
     </button>
@@ -23,15 +25,34 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className="text-white py-10 bg-cover bg-fixed bg-center" style={{ backgroundImage: "url('/images/festival.jpg')" }}>
+      <div
+        className="text-white py-10 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/festival.jpg')" }}
+      >
         <div className="container mx-auto text-center">
-          <img className="h-100 w-100 mx-auto" src={"/images/EventHunt.svg"} alt="" />
+          <img
+            className="h-100 w-100 mx-auto"
+            src={"/images/EventHunt.svg"}
+            alt=""
+          />
           <div className="bg-white py-4 mx-48 rounded-lg drop-shadow-2xl">
-            <ul className="flex flex-wrap font-bold gap-3 justify-center" style={{ color: "#4F4F4F" }}>
-              <li>{renderButton(<LocationIcon />, "Location")}</li>
-              <li>{renderButton(<DateIcon />, "Date")}</li>
-              <li>{renderButton(<TypeIcon />, "Type")}</li>
-              <li>{renderButton(<PaymentIcon />, "Payment")}</li>
+            <ul
+              className="flex flex-wrap font-bold gap-3 justify-center"
+              style={{ color: "#4F4F4F" }}
+            >
+              <li className="flex items-center">
+                {renderButton(<LocationIcon />, "Location", "mr-2")}
+              </li>
+              <li className="flex items-center">
+                {renderButton(<DateIcon />, "Date", "mr-2")}
+              </li>
+              <li className="flex items-center">
+                {renderButton(<TypeIcon />, "Type", "mr-2")}
+              </li>
+              <li className="flex items-center">
+                {renderButton(<PaymentIcon />, "Payment", "mr-2")}
+              </li>
+
               <li>
                 <button className="flex-initial w-40 bg-blue-500 p-5 rounded-lg drop-shadow-2xl text-white hover:bg-blue-600">
                   Search
@@ -44,7 +65,10 @@ const Home = () => {
       <div className="container mx-auto py-5 ">
         <div className="pb-12">
           <h1 className="text-lg font-bold">Feature event</h1>
-          <p className="text-xs">Plan your perfect event with event destination, information and inspiration from us</p>
+          <p className="text-xs">
+            Plan your perfect event with event destination, information and
+            inspiration from us
+          </p>
         </div>
         <Feature />
         <div className="pt-12 pb-5">
