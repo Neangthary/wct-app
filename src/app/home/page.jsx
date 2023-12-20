@@ -26,9 +26,14 @@ export default function Home() {
       <div>
         {usersData.map((user) => (
           <div key={user.id} className="mb-4">
-            <p className="text-xl font-bold">{user.name}</p>
-            <p>{user.age}</p>
-            <p>{user.bio}</p>
+            <p className="text-xl font-bold">{user.event_name}</p>
+            <p>{user.conduction_date}</p>
+            <p>{user.conduction_time}</p>
+            <p>{user.description}</p>
+            <p>{user.entry_fee}</p>
+            <p>{user.location}</p>
+            <p>{user.rating}</p>
+            <p>{user.rating_amount}</p>
           </div>
         ))}
       </div>
