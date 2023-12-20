@@ -156,13 +156,7 @@ const Home = () => {
             inspiration from us
           </p>
         </div>
-        <div
-          className={`transition-transform duration-1000 ${
-            isVisible
-              ? "opacity-100 transform translate-y-0"
-              : "opacity-0 transform -translate-y-10"
-          }`}
-        >
+        <div>
           <Feature />
         </div>
         <div className="pt-12 pb-5">

@@ -35,8 +35,21 @@ const Feature = () => {
       <ul role="list" className="flex flex-wrap gap-3 justify-center">
         {Eventcard.map((Eventcard) => (
           <li key={Eventcard.event}>
-            <div className=" items-center gap-x-6">
-              <img className="h-100 w-100" src={Eventcard.imageUrl} alt="" />
+            <div className="items-center gap-x-6">
+              <div className="relative w-full rounded-xl overflow-hidden group ">
+                <img
+                  className="object-cover w-100 h-100 rounded-lg duration-700 ease-in-out group-hover:scale-110"
+                  src={Eventcard.imageUrl}
+                  alt=""
+                />
+                <div className="absolute top-0 w-full h-full transition duration-300 opacity-50 rounded-lg group-hover:bg-black" />
+
+                <div className="absolute right-0 duration-300 transform -translate-x-1/2 -translate-y-1/2 left-1/2 -bottom-20 group-hover:bottom-5">
+                  <button className="h-10 px-8 font-normal bg-white border-none rounded-full btn btn-sm hover:bg-black hover:text-white">
+                    Event View
+                  </button>
+                </div>
+              </div>
               <div>
                 <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
                   {Eventcard.event}

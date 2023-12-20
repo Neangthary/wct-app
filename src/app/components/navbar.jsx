@@ -19,7 +19,10 @@ const Navbar = () => {
           <div className="text-black font-bold text-2xl">Event Hunt</div>
 
           {/* Responsive Menu Button */}
-          <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          <button
+            className="lg:hidden -order-1"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             <svg
               className="w-6 h-6"
               fill="none"
@@ -78,7 +81,10 @@ const Navbar = () => {
           {/* Responsive Menu */}
           {menuOpen && (
             <div className="lg:hidden absolute top-16 left-0 w-full max-h-screen overflow-y-auto bg-white z-10 shadow-md transition-opacity duration-300 opacity-100">
-              <ul className="flex flex-col space-y-4 p-4 font-bold" style={{ color: "#4F4F4F" }}>
+              <ul
+                className="flex flex-col space-y-4 p-4 font-bold"
+                style={{ color: "#4F4F4F" }}
+              >
                 <li>
                   <button
                     className="hover:text-black"
