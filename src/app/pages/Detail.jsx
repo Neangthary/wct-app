@@ -7,17 +7,32 @@ import { db } from "../config/firebase";
 
 
 const EventDetail = () => {
+    // basic xml 
+    const [activeButton, setActiveButton] = useState('overview');
+    const [borderStyle, setBorderStyle] = useState({});
+    // overview content
+    const [overviewContent, setOverviewContent] = useState('');
 
+    const [displayText, setDisplayText] = useState(overviewContent);
+    const [textOpacity, setTextOpacity] = useState(1);
+    const indicatorRef = useRef(null);
+    // review content 
+    const [reviewContent, setReviewContent] = useState(
+        <div className="container mx-auto">
+            hidden content
+        </div>
+    )
     //data from database
-    const docId = "liRkvFZ9cbJG09tuwoVQ";
+    const docId = "2UVU2Nx7EwSs5CkHITf0";
     const [data, setData] = useState({});
     const getEventDetails = async() => {
-        const eventRef = doc(db, "event_detail", docId);
+        const eventRef = doc(db, "eventDetail", docId);
         
         try {
             const eventData = await getDoc(eventRef);
             if (eventData.exists()) {
                 setData(eventData.data());
+                console.log(data)
                 setOverviewContent(
                     <div>
                         {/* event name and shorthanded info (rating, location) */}
@@ -75,23 +90,7 @@ const EventDetail = () => {
         } catch(err) {
             console.log('Error retrieving data: ', err);
         }
-
     }
-    // basic xml 
-    const [activeButton, setActiveButton] = useState('overview');
-    const [borderStyle, setBorderStyle] = useState({});
-    // overview content
-    const [overviewContent, setOverviewContent] = useState('');
-
-    // review content 
-    const [reviewContent, setReviewContent] = useState(
-        <div className="container mx-auto">
-            hidden content
-        </div>
-    )
-    const [displayText, setDisplayText] = useState(overviewContent);
-    const [textOpacity, setTextOpacity] = useState(1);
-    const indicatorRef = useRef(null);
 
     useEffect(() => {
         const activeTab = document.getElementById(activeButton);
