@@ -1,215 +1,128 @@
-"use client";
-import { CarRepair, PlaceOutlined, Star, StarHalf, ThumbUpAltOutlined, WifiOutlined } from "@mui/icons-material";
-import { useState, useEffect, useRef } from "react";
-import Register from "../components/Register";
-import { getDoc, doc } from 'firebase/firestore';
-import { db } from "../config/firebase";
-
+"use client"
+import { AttachMoney, DateRange, People, PlaceOutlined,Timelapse} from "@mui/icons-material";
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db, storage } from "../firebase";
+import { ref, listAll, getDownloadURL } from "firebase/storage";
 
 const EventDetail = () => {
-    // basic xml 
-    const [activeButton, setActiveButton] = useState('overview');
-    const [borderStyle, setBorderStyle] = useState({});
-    // overview content
-    const [overviewContent, setOverviewContent] = useState('');
+    //states of datas
+    const [eventData, setEventData] = useState(null);
+    const [isPending,setIsPending] = useState(true);
+    const [error, SetError] = useState(false);
+    //states of images
+    const imageListRef = ref(storage, "/Event_detail_test/vRT1yh9qD6XmIyFuw0Dw");
+    const [imageList, setImageList] = useState(null);
 
-    const [displayText, setDisplayText] = useState(overviewContent);
-    const [textOpacity, setTextOpacity] = useState(1);
-    const indicatorRef = useRef(null);
-    // review content 
-    const [reviewContent, setReviewContent] = useState(
-        <div className="container mx-auto">
-            hidden content
-        </div>
-    )
-    //data from database
-    const docId = "2UVU2Nx7EwSs5CkHITf0";
-    const [data, setData] = useState({});
-    const getEventDetails = async() => {
-        const eventRef = doc(db, "eventDetail", docId);
+    useEffect(() => {
+        const docRef = doc(db, 'eventDetail', 'vRT1yh9qD6XmIyFuw0Dw');
         
-        try {
-            const eventData = await getDoc(eventRef);
-            if (eventData.exists()) {
-                setData(eventData.data());
-                console.log(data)
-                setOverviewContent(
-                    <div>
+        const fetchEventDetial = async() => {
+            try {
+                const fetchedData = await getDoc(docRef);
+                if((fetchedData).exists()){
+                    setEventData(fetchedData.data());
+                    setIsPending(false);
+                }else {
+                    
+                    setIsPending(false);
+                }
+            } catch (err) {
+                console.log(err);
+                SetError(true)
+                setIsPending(false);
+            };
+        };
+
+        fetchEventDetial();
+    },[])
+
+    useEffect(() => {
+        const fetchImages = async () => {
+            try {
+                const response = await listAll(imageListRef);
+                const urls = await Promise.all(
+                    response.items.map(async (item) => await getDownloadURL(item))
+                );           
+                setImageList(() => [...urls]);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+    
+        fetchImages();
+    }, []);
+    return ( 
+        <div className="event_detail">
+            { isPending && !imageList && <div className=" h-[85vh] flex justify-center items-center  text-base lg:text-xl">Loading...</div> }
+             
+            { !eventData && !isPending && <div className=" h-[85vh] flex justify-center items-center  text-base lg:text-xl">There is no data with the Event.</div> }
+            { eventData && imageList &&
+                <div className="event-details ">
+                    {/* images */}
+                    <section className="border-b-2  ">
+                        <div className="Images bg-white py-10 container md:grid flex justify-center items-center flex-col grid-cols-1 gap-y-2 md:grid-cols-3 md:gap-5 mx-auto ">
+                            <img
+                                className=" shadow-xl w-[400px] rounded-lg md:row-span-2 md:col-span-2  md:w-full md:h-full object-cover md:rounded-lg  sm:rounded-md"
+                                src= { imageList[0] }
+                                alt=""
+                            />
+                            <img
+                                className=" shadow-lg w-[400px]  rounded-lg md:rouned-md md:w-full md:h-full object-cover md:col-span-1"
+                                src= { imageList[1] }
+                                alt=""
+                            />
+                            <img
+                                className=" shadow-lg  w-[400px]  rounded-lg md:rounded-md md:w-full md:h-full object-cover md:col-span-1"
+                                src= { imageList[2] }
+                                alt=""
+                            />
+                        </div>
+                    </section>
+        
+                    <section className="event-infos bg-zinc-100 pb-10">
                         {/* event name and shorthanded info (rating, location) */}
                         <div className="event-shorthanded-info container mx-auto py-8 pl-5 md:pl-0 ">
-                            <h1 className=" text-2xl md:text-3xl font-semibold text-gray-800 mb-4" > { data.event_name } </h1>
+                            <h1 className=" text-2xl md:text-3xl font-semibold text-gray-800" > { eventData.title } </h1>
                             <div className=" text-sm leading-8 ">
-                                <div className="flex">
-                                    <div className=" text-xl text-yellow-500" ><Star /><Star /><Star /><Star /><StarHalf /> </div> { `${data.rating} (${data.rating_amount} reviews)` } 
-                                </div>
-                                <p className=" text-gray-900 font-semibold "> <PlaceOutlined className=" text-blue-600" /> { data.location } </p>
+                                <p className=" text-gray-900 font-semibold "> <PlaceOutlined className=" text-blue-600" /> { eventData.location } </p>
                             </div>
                         </div>
-
+        
                         {/* overview details and map */}
-                        <div className="detailed-infos-container container mx-auto md:grid grid-cols-3 gap-x-10 ">
+                        <div className="detailed-infos-container container mx-auto lg:grid grid-cols-3 gap-x-10 ">
                             <div className="overview-details col-span-2 ">
-                                <div className="shadow p-6 rounded-t-lg bg-white">
+                                <div className="drop-shadow p-6 rounded-t-lg bg-white">
                                     <div className="mb-5 text-md font-semibold ">Overview</div>
                                     <div className="overview font-semibold leading-6 text-gray-600 text-sm">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto explicabo cum aliquam vel dignissimos.<br/>
-                                            voluptates quos veritatis id, pariatur accusamus modi culpa inventore rerum dolor atque, neque nulla debitis incidunt.<br/> 
-                                            Neque aut ipsum repellendus culpa? Distinctio eligendi ipsam, provident accusamus, repudiandae neque, laborum nihil numquam possimus qui doloribus!
+                                            { eventData.description }
                                     </div>
                                 </div>
-                                <div className="event-shorthanded-detail mt-1 leading-8 shadow rounded-b-lg p-6 bg-white">
+                                <div className="event-shorthanded-detail mt-1 leading-8 drop-shadow rounded-b-lg p-6 bg-white">
                                     <div className=" text-base font-semibold">Event details</div>
-                                    <div className=" flex items-end justify-between">
-                                        <div className="text-xs md:text-sm leading-7 md:leading-none">
-                                            <p> <WifiOutlined className=" text-xl md:text-2xl text-blue-500" /> { "Free to join" } </p>
-                                            <p> <CarRepair className=" text-xl md:text-2xl text-blue-500" /> { "Parking available" } </p>
-                                            <p> <ThumbUpAltOutlined  className=" text-xl md:text-2xl text-blue-500"/> { "Top rated in area" } </p>
-                                        </div>
-                                        <div className="">
-                                            <Register />
-                                        </div>
+                                    <div className="text-xs md:text-sm leading-7 md:leading-8 ">
+                                        <p> <AttachMoney className=" text-xl md:text-2xl text-blue-500 mr-2" /> { eventData.entryFee } </p>
+                                        <p> <DateRange className=" text-xl md:text-2xl text-blue-500 mr-2" /> { eventData.date.toDate().toLocaleDateString() }{' at '}{eventData.date.toDate().toLocaleTimeString()}</p>                              
+                                        <p> <PlaceOutlined  className=" text-xl md:text-2xl text-blue-500 mr-2"/> { eventData.location } </p>
+                                        <p> <People  className=" text-xl md:text-2xl text-blue-500 mr-2"/> { eventData.maxParticipant } </p>
                                     </div>
                                 </div>
                             </div>
-
+        
                             {/* map iframe */}
                             <div className="map">
                                 <iframe
-                                className=" mt-2  shadow-md w-[400px] h-[300px] min-h-[200px] max-h-[300px] mx-auto min-w-[200px] max-w-[400px] md:max-w-none md:max-h-none md:mt-0 md:w-full md:h-full rounded-xl" 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2324.171905616345!2d104.88959376018452!3d11.567934735469128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109519fe4077d69%3A0x20138e822e434660!2sRUPP%20(Royal%20University%20of%20Phnom%20Penh)!5e0!3m2!1sen!2skh!4v1702457285995!5m2!1sen!2skh" 
-                                allowfullscreen="" 
-                                loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                className=" mt-2  drop-shadow w-5/6 h-[300px]  mx-auto min-w-[200px]  lg:max-w-none lg:max-h-none lg:mt-0 lg:w-full lg:h-full rounded-xl" 
+                                src= {eventData.locationLink} 
+                                loading="lazy"></iframe>
                             </div>
                         </div>
-                    </div>
-                );
-            } else {
-                console.log('there is not doc with the id.');
-            }
-        } catch(err) {
-            console.log('Error retrieving data: ', err);
-        }
-    }
 
-    useEffect(() => {
-        const activeTab = document.getElementById(activeButton);
-            if (activeTab) {
-                const indicatorWidth = activeTab.offsetWidth;
-                const indicatorLeft = activeTab.offsetLeft;
-            setBorderStyle({
-                width: `${indicatorWidth}px`,
-                transform: `translateX(${indicatorLeft}px)`,
-            });
-        }
-        getEventDetails();
-    }, [activeButton]);
-
-
-    // list switching toggle handler
-    const handleItemClick = (button) => {
-        const clickedButton = document.getElementById(button);
-        const hasBlueBorder = clickedButton.classList.contains('border-blue-500');
-
-        if (!hasBlueBorder) {
-            setActiveButton(button);
-            setTextOpacity(0);
-
-            setTimeout(() => {
-                const activeTab = document.getElementById(button);
-                if (activeTab) {
-                    const indicatorWidth = activeTab.offsetWidth;
-                    const indicatorLeft = activeTab.offsetLeft;
-                    setBorderStyle({
-                        width: `${indicatorWidth}px`,
-                        transform: `translateX(${indicatorLeft}px)`,
-                    });
-                }
-
-                if (button === 'overview') {
-                    
-                    setDisplayText(overviewContent);
-                    
-                } else if (button === 'review') {
-                    setDisplayText(reviewContent);
-                }
-                
-
-                setTextOpacity(1);
-            }, 300);
-        }
-    };
-
-    return (
-        <div className="event-details">
-        <div className="event-details ">
-                {/* images */}
-                <section className="Images bg-white py-10 container md:grid flex justify-center items-center flex-col grid-cols-1 gap-y-2 md:grid-cols-3 md:gap-2 lg:gap-4 mx-auto ">
-                    <img
-                        className=" shadow-xl w-[400px] rounded-lg md:row-span-2 md:col-span-2  md:w-full md:h-full object-cover md:rounded-lg  sm:rounded-md"
-                        src="https://www.rupp.edu.kh/ifl/english/image_banner/img_ifl_doe.jpg"
-                        alt=""
-                    />
-                    <img
-                        className=" shadow-lg w-[400px]  rounded-lg md:rouned-md md:w-full md:h-full object-cover md:col-span-1"
-                        src="https://academics-bucket-sj19asxm-prod.s3.ap-southeast-1.amazonaws.com/3268bdb3-39f2-4818-87cb-7939736f2740/0706543a-4a63-4a17-8aaf-210ebbfb558d.jpg"
-                        alt=""
-                    />
-                    <img
-                        className=" shadow-lg  w-[400px]  rounded-lg md:rounded-md md:w-full md:h-full object-cover md:col-span-1"
-                        src="https://web-rupp.camemis-learn.com/static/images/rupp_bg.jpg"
-                        alt=""
-                    />
-                </section>
-
-                {/* overview and reviews labels */}
-                <div className=" border-b border-gray-300 shadow-md">
-                    <div className=" mx-5 labels container md:mx-auto font-semibold text-gray-600 ">
-                        <ul className="flex flex-row gap-4 relative">
-                            <li
-                            id="overview"
-                            className={`p-2 cursor-pointer ${
-                                activeButton === 'overview' ? 'border-b-2 border-blue-500' : ''
-                            }`}
-                            onClick={() => handleItemClick('overview')}
-                            >
-                            Overview
-                            </li>
-                            
-                            <li
-                            id="review"
-                            className={`p-2 cursor-pointer ${
-                                activeButton === 'review' ? 'border-b-2 border-blue-500' : ''
-                            }`}
-                            onClick={() => handleItemClick('review')}
-                            >
-                            Review
-                            </li>
-                            <div
-                            ref={indicatorRef}
-                            className="absolute bottom-0 left-0 bg-blue-500"
-                            style={{
-                                height: '2px',
-                                transition: 'transform 0.3s ease-in-out, width 0.3s ease-in-out',
-                                ...borderStyle,
-                            }}
-                            />
-                        </ul>
-                    </div>
+                    </section>
                 </div>
+            }
+            { error && <div className=" h-[85vh] flex justify-center items-center  text-base lg:text-xl">Error fetching data!</div> }
 
-                <section
-                className="event-infos bg-zinc-100 pb-10"
-                style={{
-                transition: 'opacity 0.3s ease-in-out',
-                opacity: textOpacity,
-                }}
-                >
-                    {displayText}
-                </section>
-
-                
-            </div>
         </div>
     );
 };
