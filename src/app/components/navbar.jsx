@@ -105,7 +105,7 @@ const Navbar = (isHomepage) => {
             <div className="lg:hidden absolute top-20 left-2 w-full max-h-screen z-20 opacity-100">
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52 font-bold"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow bg-base-100 rounded-box w-52 font-bold"
                 style={{ color: "#4F4F4F" }}
               >
                 <li>
