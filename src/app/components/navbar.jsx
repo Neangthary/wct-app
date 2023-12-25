@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const Navbar = () => {
+const Navbar = ({ customBgColor }) => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -12,8 +12,12 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
+  const navbarStyle = customBgColor
+    ? { backgroundColor: customBgColor, color: "white" }
+    : {};
+
   return (
-    <nav className="bg-white p-4 shadow-md">
+    <nav className={`p-4 shadow-md`} style={navbarStyle}>
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="text-black font-bold text-2xl">Event Hunt</div>
@@ -39,7 +43,7 @@ const Navbar = () => {
           {/* Navigation Links - Hidden on mobile, visible on larger screens */}
           <ul
             className="hidden lg:flex space-x-10 font-bold"
-            style={{ color: "#4F4F4F" }}
+            style={{ color: customBgColor ? "white" : "#4F4F4F" }}
           >
             <li>
               <button
@@ -80,7 +84,7 @@ const Navbar = () => {
             <div className="lg:hidden absolute top-16 left-0 w-full max-h-screen overflow-y-auto bg-white z-10 shadow-md transition-opacity duration-300 opacity-100">
               <ul
                 className="flex flex-col space-y-4 p-4 font-bold"
-                style={{ color: "#4F4F4F" }}
+                style={{ color: "#4F4F4F", backgroundColor: "#F2F2F2" }}
               >
                 <li>
                   <button

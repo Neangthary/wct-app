@@ -1,13 +1,18 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const style = {
-  container: `bg-customGrey flex justify-around w-6/12  my-8 p-3 rounded-lg shadow-xl`,
-  inputPart: `w-3/12 rounded flex items-center border px-2 mx-2`,
-  selectPart: `appearance-none text-center outline-none bg-transparent  w-full`,
-  btn: `p-2 rounded px-5 btn glass`,
+  container: `bg-customGrey mx-36 px-8 flex flex-col lg:flex-row justify-around w-full lg:w-6/12 my-8 p-3 rounded-lg shadow-xl`,
+  inputPart: `w-full lg:w-auto lg:flex-1 rounded flex items-center border p-2 mx-2 my-2 lg:my-0`,
+  selectPart: ` appearance-none text-center outline-none bg-transparent w-full`,
+  btn: `p-2 rounded px-5 lg:btn  mt-2 lg:mt-0 lg:ml-2`,
 };
 
 const SearchArea = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+
   return (
     <div className="flex justify-center">
       <form className={style.container}>
@@ -35,7 +40,11 @@ const SearchArea = () => {
 
           <select className={style.selectPart}>
             <option style={{ display: "none" }}>Location</option>
-            <option>Option 1</option>
+            <option>Phnom Penh</option>
+            <option>Siem Reap</option>
+            <option>Sihanouk Vile</option>
+            <option>Battembong</option>
+            <option>Kompot</option>
           </select>
         </div>
         {/* Date */}
@@ -55,9 +64,13 @@ const SearchArea = () => {
             />
           </svg>
 
-          <select className={style.selectPart}>
-            <option style={{ display: "none" }}>Date</option>
-          </select>
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            dateFormat="MM/dd/yyyy"
+            placeholderText="Date"
+            className={style.selectPart}
+          />
         </div>
         {/* Type */}
         <div className={style.inputPart}>
@@ -78,6 +91,10 @@ const SearchArea = () => {
 
           <select className={style.selectPart}>
             <option style={{ display: "none" }}>Type</option>
+            <option>Entertainment</option>
+            <option>Conferance</option>
+            <option>Cultural</option>
+            <option>Education</option>
           </select>
         </div>
         {/* Cost */}
@@ -110,7 +127,7 @@ const SearchArea = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            className="w-6 h-6 hidden lg:inline-block"
           >
             <path
               stroke-linecap="round"
@@ -118,6 +135,7 @@ const SearchArea = () => {
               d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
             />
           </svg>
+          <span className="lg:hidden btn btn-success">Search</span>
         </button>
       </form>
     </div>

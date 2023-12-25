@@ -13,6 +13,8 @@ module.exports = {
     colors: {
       customBlue: "#2A5A9A",
       customGrey: "#F2F2F2",
+      orange: { 400: "#FF9529" },
+      red: "#FF0000",
     },
   },
   plugins: [require("daisyui")],

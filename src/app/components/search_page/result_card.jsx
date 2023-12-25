@@ -1,11 +1,11 @@
 import React from "react";
 
 const style = {
-  container: `flex mx-20 mt-5 border rounded-md bg-white shadow-lg`,
-  secondContainer: `flex p-4`,
-  img: ` w-4/12 rounded-md`,
-  content: `ml-10 `,
-  btn: `btn btn-outline btn-info mt-20`,
+  container: `flex flex-col mx-4 lg:mx-20 mt-5 border rounded-md bg-white shadow-lg`,
+  secondContainer: `flex flex-col lg:flex-row p-4`,
+  img: `w-full lg:w-4/12 rounded-md lg:mr-4`,
+  content: `mt-4 lg:mt-0 lg:ml-4`,
+  btn: `btn btn-outline btn-info mt-4 lg:mt-20`,
 };
 
 function ResultCard() {
@@ -23,7 +23,6 @@ function ResultCard() {
               type="radio"
               name="rating-7"
               className="mask mask-star-2 bg-orange-400"
-              checked
             />
             <input
               type="radio"
@@ -46,7 +45,9 @@ function ResultCard() {
               className="mask mask-star-2 bg-orange-400"
             />
           </div>
-          <p>Scroll along the beach take a break enjoy the food</p>
+          <p className="mt-2 lg:mt-4">
+            Scroll along the beach take a break enjoy the food
+          </p>
           <button className={style.btn}>See Detail</button>
         </div>
       </div>
