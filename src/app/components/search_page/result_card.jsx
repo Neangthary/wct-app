@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const style = {
   container: `flex flex-col mx-4 lg:mx-20 mt-5 border rounded-md bg-white shadow-lg`,
@@ -9,6 +11,11 @@ const style = {
 };
 
 function ResultCard() {
+  const router = useRouter();
+  const onClickPage = (pathname) => {
+    router.push(pathname);
+  };
+
   return (
     <div className={style.container}>
       <div className={style.secondContainer}>
@@ -48,7 +55,12 @@ function ResultCard() {
           <p className="mt-2 lg:mt-4">
             Scroll along the beach take a break enjoy the food
           </p>
-          <button className={style.btn}>See Detail</button>
+          <button
+            className={style.btn}
+            onClick={() => onClickPage("/discovery")}
+          >
+            See Detail
+          </button>
         </div>
       </div>
     </div>

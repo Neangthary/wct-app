@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const Navbar = (isHomepage) => {
+const NavbarSearch = (isHomepage) => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
@@ -32,13 +32,13 @@ const Navbar = (isHomepage) => {
         isHomepage
           ? isScrolled
             ? "h-[70px] bg-white shadow-lg"
-            : "h-[84px] bg-white"
+            : "h-[84px] bg-transparent text-white"
           : "h-[70px] bg-white shadow-sm sticky"
       }`}
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-          <div className="text-black font-bold text-2xl">Event Hunt</div>
+          <div className="font-bold text-2xl">Event Hunt</div>
 
           {/* Responsive Menu Button */}
           <button
@@ -62,10 +62,7 @@ const Navbar = (isHomepage) => {
           </button>
 
           {/* Navigation Links - Hidden on mobile, visible on larger screens */}
-          <ul
-            className="hidden lg:flex space-x-10 font-bold"
-            style={{ color: "#4F4F4F" }}
-          >
+          <ul className="hidden lg:flex space-x-10 font-bold">
             <li>
               <button
                 className="hover:text-black"
@@ -159,4 +156,4 @@ const Navbar = (isHomepage) => {
   );
 };
 
-export default Navbar;
+export default NavbarSearch;

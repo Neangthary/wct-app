@@ -4,9 +4,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const style = {
-  container: `bg-customGrey mx-36 px-8 flex flex-col lg:flex-row justify-around w-full lg:w-6/12 my-8 p-3 rounded-lg shadow-xl`,
+  container: `bg-white mx-36 px-8 flex flex-col lg:flex-row justify-around w-full lg:w-6/12 my-8 p-3 rounded-lg shadow-xl`,
   inputPart: `w-full lg:w-auto lg:flex-1 rounded flex items-center border p-2 mx-2 my-2 lg:my-0`,
-  selectPart: ` appearance-none text-center outline-none bg-transparent w-full`,
+  selectPart: ` appearance-none text-center outline-none bg-transparent w-full cursor-pointer`,
   btn: `p-2 rounded px-5 lg:btn  mt-2 lg:mt-0 lg:ml-2`,
 };
 
