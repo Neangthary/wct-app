@@ -125,7 +125,7 @@ const Home = () => {
         </div>
       </div>
       <div className="container mx-auto py-5 ">
-        <div className="pb-12">
+        <div className="pb-12 px-4">
           <h1 className="text-lg font-bold">Feature event</h1>
           <p className="text-xs">
             Plan your perfect event with event destination, information and
@@ -133,15 +133,15 @@ const Home = () => {
           </p>
         </div>
         <Feature />
-        <div className="pt-12 pb-5">
+        <div className="pt-12 pb-5 px-4">
           <h1 className="text-lg font-bold">What’s happening this week</h1>
         </div>
         <Recentcard />
-        <div className="pt-12 pb-5">
+        <div className="pt-12 pb-5 px-4">
           <h1 className="text-lg font-bold">What’s people love</h1>
         </div>
         <Peoplelove />
-        <div className="pt-12 pb-5">
+        <div className="pt-12 pb-5 px-4">
           <Endfooter />
           <div className="text-center pt-10">
             <h1 className="text-xl p-2">Explore event with Event Finder</h1>
